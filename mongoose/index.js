@@ -17,13 +17,8 @@ mongoose
   .connect("mongodb://127.0.0.1:27017/mongodemo")
   .then(async () => {
     console.log("Database Connected");
-    const person = new personModel({
-      firstName: "Arafat",
-      lastName: "Rahman",
-    });
-    await person.save();
-    console.log("Person Created");
-    console.log(person);
+    const people = await personModel.find({ firstName: "Arafat" });
+    console.log(people);
   })
   .catch((err) => console.log(err))
   .finally(() => mongoose.connection.close());
